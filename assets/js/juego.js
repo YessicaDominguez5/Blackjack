@@ -7,6 +7,16 @@ let deck = [];
 const tipos = ['C', 'H', 'D', 'S'];
 const especiales = ['A', 'J', 'Q', 'K'];
 
+let puntosJugador = 0;
+let puntosComputadora = 0;
+
+//Referencias HTML
+
+const btnPedir = document.querySelector('#btnPedirCarta');
+
+const smalls = document.querySelectorAll('small'); //smalls es const porque es la referencia (ubicación) 
+// a los elementos small y esta nunca va a cambiar, lo que cambia es el valor que se muestra en esa ubicación. 
+
 //Crea una nueva baraja 
 
 const crearDeck = () => {
@@ -34,7 +44,6 @@ deck = _.shuffle(deck); //función de la librería undescore. Cambia de posició
 console.log(deck);
 
 
-
 }
 
 crearDeck();
@@ -50,14 +59,10 @@ throw 'No hay cartas en el deck';
 }
 
 let carta = deck.pop();
-//console.log(carta);
-
-//console.log(deck);
 
 return carta;
 }
 
-//pedirCarta();
 
 //Tomar el valor de la carta
 
@@ -67,9 +72,25 @@ const valorCarta = (carta) =>{
     //caso le indicamos que es desde la posición 0 a la anteúltima, es decir le borramos el palo 
     //ej 2C quedaría 2, 10H quedaría 10.
 
-    return isNaN(valor)?((valor === 'A')?11:10):valor*1;
+    return isNaN(valor)?((valor === 'A')?11:10):valor*1; //si no es una carta numerica y es un A vale 11 puntos, 
+    // si es una J, Q , K vale 10 puntos. Si es una carta númerica vale lo mismo que la carta.
+    //El valor*1 pasamos el string a number 
 
 
 }
 
-const valor = valorCarta(pedirCarta());
+//Eventos
+
+btnPedir.addEventListener('click', () => {
+
+    const carta = pedirCarta();
+
+    console.log(carta);
+
+    puntosJugador = puntosJugador + valorCarta(carta);
+
+
+    console.log(puntosJugador);
+
+   smalls[0].innerText = puntosJugador; //smalls es una Referencia HTML, document.QuerySelectorAll('small');
+})
