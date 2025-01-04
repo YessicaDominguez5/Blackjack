@@ -17,6 +17,8 @@ const btnPedir = document.querySelector('#btnPedirCarta');
 const smalls = document.querySelectorAll('small'); //smalls es const porque es la referencia (ubicación) 
 // a los elementos small y esta nunca va a cambiar, lo que cambia es el valor que se muestra en esa ubicación. 
 
+const divCartasJugador = document.querySelector('#jugador-cartas');
+
 //Crea una nueva baraja 
 
 const crearDeck = () => {
@@ -87,10 +89,34 @@ btnPedir.addEventListener('click', () => {
 
     console.log(carta);
 
+    //Mostrar puntaje
+
     puntosJugador = puntosJugador + valorCarta(carta);
 
-
-    console.log(puntosJugador);
-
    smalls[0].innerText = puntosJugador; //smalls es una Referencia HTML, document.QuerySelectorAll('small');
+
+   //Mostrar imagen carta
+
+   const imagenCarta = document.createElement('img'); //creamos un elemento img
+
+   imagenCarta.src = `assets/cartas/${carta}.png`; //Le indicamos la ruta de la imagen, y la carta a mostrar que cambia dependiendo que carta salga
+
+   imagenCarta.classList.add('carta'); // Le agregamos la clase carta que creamos en css
+
+   divCartasJugador.append(imagenCarta); //Le indicamos donde mostrarlas, divCartasJugador es una Referencia HTML
+
+
+   //Lógica del juego
+
+   if(puntosJugador > 21){
+
+       btnPedir.disabled = true;
+       console.warn('Perdiste');
+
+   }else if(puntosJugador === 21)
+   {
+       btnPedir.disabled = true;
+       console.warn('Ganaste');
+
+   }
 })
