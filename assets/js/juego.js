@@ -1,3 +1,9 @@
+
+//Patrón Módulo (para proteger el código)
+(() =>{
+    'use strict'
+
+
 /* 2C 2 de Clubs(tréboles)*/
 /* 2H 2 de Hearts(corazones)*/
 /* 2D 2 de Diamonds(diamante)*/
@@ -164,7 +170,7 @@ if(puntosComputadora === puntosMinimos){
     alert('Computadora gana');
 }
 
-}, 500 ); //para que el alert tarde unos milisegundos más en aparecer y primero se vea la jugada y después el alert
+}, 1000 ); //para que el alert tarde unos milisegundos más en aparecer y primero se vea la jugada y después el alert
 }
 
 //Eventos
@@ -241,4 +247,11 @@ btnJuegoNuevo.addEventListener('click',() =>{
     // del jugador y el 1 para reiniciar los puntos de la computadora.
     
 
-})
+})  
+
+
+})(); //fin Patrón Módulo
+
+
+
+
