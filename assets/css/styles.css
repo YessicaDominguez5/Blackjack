@@ -35,3 +35,7 @@ height: 24rem; /*Para que por más de que no haya cartas quede el espacio para l
 
 
 }
+.sinCartas{
+
+    display: none;
+}
